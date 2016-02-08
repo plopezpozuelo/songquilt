@@ -2,12 +2,17 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @user.name %>
+  <%= [@user.first_name, @user.last_name].join(" ") %>
 </p>
 
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
+</p>
+
+<p>
+  <strong>SK username:</strong>
+  <%= @user.sk_username %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
