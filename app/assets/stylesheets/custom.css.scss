@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$sk-pink: #f80046;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -14,7 +15,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 section {
@@ -59,6 +60,10 @@ p {
   line-height: 1.7em;
 }
 
+/* navbar */
+
+ul.nav a:hover { color: $sk-pink !important; }
+
 /* miscellaneous */
 
 .debug_dump {
@@ -81,6 +86,21 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
 
 /* sidebar */
 

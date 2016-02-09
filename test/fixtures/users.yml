@@ -1,0 +1,6 @@
+freddie:
+  first_name: Freddie
+  last_name: Mercury
+  email: freddie.mercury@songkick.com
+  sk_username: freddie-mercury
+  password_digest: <%= User.digest('password') %>
