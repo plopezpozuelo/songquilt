@@ -4,3 +4,12 @@ freddie:
   email: freddie.mercury@songkick.com
   sk_username: freddie-mercury
   password_digest: <%= User.digest('password') %>
+  admin: true
+
+kurt:
+  first_name: Kurt
+  last_name: Cobain
+  email: kurt.cobain@songkick.com
+  sk_username: kurt-cobain
+  password_digest: <%= User.digest('password') %>
+
