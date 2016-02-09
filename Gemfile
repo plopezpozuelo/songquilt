@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Set Ruby version
-ruby '2.1.4'
+# ruby '2.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 gem 'bcrypt', '3.1.7'
@@ -49,5 +49,6 @@ group :development do
 end
 
 group :production do
-  gem 'puma', '2.11.1'
+  gem 'rails_12factor', '0.0.2'
+  # gem 'puma', '2.11.1'
 end
