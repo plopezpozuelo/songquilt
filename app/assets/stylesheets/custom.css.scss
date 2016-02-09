@@ -5,6 +5,7 @@
 
 $gray-medium-light: #eaeaea;
 $sk-pink: #f80046;
+$sk-dark-pink: #a6002c;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -133,6 +134,13 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
+    }
+    a {
+      color: $sk-pink;
+    }
+
+    a:hover {
+      color: $sk-dark-pink;
     }
   }
 }
