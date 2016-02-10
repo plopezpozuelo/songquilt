@@ -13,10 +13,18 @@ $sk-dark-pink: #a6002c;
   box-sizing:         border-box;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 /* universal */
 
 body {
   padding-top: 80px;
+
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
 
 section {
@@ -165,7 +173,7 @@ aside {
 }
 
 .gravatar_edit {
-  margin-top: 15px;
+  float: right;
 }
 
 #error_explanation {
@@ -181,4 +189,36 @@ aside {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  width: 89%;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
 }
