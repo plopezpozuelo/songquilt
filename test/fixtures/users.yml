@@ -5,6 +5,8 @@ freddie:
   sk_username: freddie-mercury
   password_digest: <%= User.digest('password') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 kurt:
   first_name: Kurt
@@ -12,4 +14,6 @@ kurt:
   email: kurt.cobain@songkick.com
   sk_username: kurt-cobain
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
