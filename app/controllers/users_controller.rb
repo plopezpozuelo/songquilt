@@ -9,10 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user.save_calendar_entries_from_api
-    @calendar_entries = @user.calendar_entries
-    @going = @calendar_entries.select{ |item| item[:reason] == 'im_going' }
-    @might_go = @calendar_entries.select{ |item| item[:reason] == 'i_might_go' }
+    if @user.sk_username
+      @user.save_calendar_entries_from_api
+      @calendar_entries = @user.calendar_entries
+      @going = @calendar_entries.select{ |item| item[:reason] == 'im_going' }
+      @might_go = @calendar_entries.select{ |item| item[:reason] == 'i_might_go' }
+    end
   end
 
   def new
