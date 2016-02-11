@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  has_many :calendar_entries, dependent: :destroy
+
+  include HTTParty
+  format :json
+
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -70,6 +75,15 @@ class User < ActiveRecord::Base
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Saves calendar entries
+  def save_calendar_entries_from_api
+    uri = 'http://api.songkick.com/api/3.0/users/paula-lopez-pozuelo/calendar.json?reason=attendance&apikey=hackday'
+    response = HTTParty.get(uri)
+    response['resultsPage']['results']['calendarEntry'].each do |entry|
+      CalendarEntry.find_or_create_by(CalendarEntry.parse_calendar_entry(entry, self.id))
+    end
   end
 
   private

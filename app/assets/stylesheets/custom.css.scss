@@ -191,6 +191,25 @@ aside {
   }
 }
 
+/* microposts */
+
+.calendar-entries {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .display-name {
+    margin-top: 1em;
+    padding-left: 1em;
+  }
+  .img {
+    float: left;
+    margin-top: 5px;
+  }
+}
+
 /* footer */
 
 footer {

@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user.save_calendar_entries_from_api
+    @calendar_entries = @user.calendar_entries
+    @going = @calendar_entries.select{ |item| item[:reason] == 'im_going' }
+    @might_go = @calendar_entries.select{ |item| item[:reason] == 'i_might_go' }
   end
 
   def new
@@ -21,9 +25,6 @@ class UsersController < ApplicationController
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
-      # log_in @user
-      # flash[:success] = "Welcome to SKuilt!"
-      # redirect_to @user
     else
       render 'new'
     end

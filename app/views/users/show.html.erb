@@ -10,9 +10,25 @@
       <h2>
         <%= @user.email %>
       </h2>
+
       <a href="http://www.songkick.com/users/<%= @user.sk_username %>">
         <%= @user.sk_username %>
       </a>
     </section>
   </aside>
+  <div class="col-md-8">
+    <% if @calendar_entries.any? %>
+      <h3>Concerts you are going to (<%= @going.count %>)</h3>
+      <ol class="calendar-entries">
+        <%= render @going  %>
+      </ol>
+      <br>
+      <h3>Concerts you might attend (<%= @might_go.count %>)</h3>
+      <ol class="calendar-entries">
+        <%= render @might_go  %>
+      </ol>
+    <% else %>
+      <h3>You aren't tracking any upcoming events.</h3>
+    <% end %>
+  </div>
 </div>
