@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :calendar_entries, dependent: :destroy
+  has_many :events, through: :calendar_entries
 
   include HTTParty
   format :json
@@ -81,6 +82,7 @@ class User < ActiveRecord::Base
   def save_calendar_entries_from_api
     uri = "http://api.songkick.com/api/3.0/users/#{sk_username}/calendar.json?reason=attendance&apikey=hackday"
     response = HTTParty.get(uri)
+    CalendarEntry.where(user_id: self.id).destroy_all
     response['resultsPage']['results']['calendarEntry'].each do |entry|
       CalendarEntry.find_or_create_by(CalendarEntry.parse_calendar_entry(entry, self.id))
     end

@@ -1,0 +1,34 @@
+<% provide(:title, @event.display_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="event_info">
+      <h1>
+        <%= @event.display_name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @calendar_entries.any? %>
+      <h3>People going to this event (<%= @going.count %>)</h3>
+      <% if @going.any? %>
+        <ol class="users">
+          <%= render @going  %>
+        </ol>
+      <% else %>
+        <hr>
+        No one is going to this event
+      <% end %>
+      <br><br><br>
+      <h3>People interested in this event (<%= @might_go.count %>)</h3>
+      <% if @might_go.any? %>
+        <ol class="users">
+          <%= render @might_go  %>
+        </ol>
+      <% else %>
+        No one is tracking this event
+      <% end %>
+    <% else %>
+      <h3>No one is interested in this event</h3>
+    <% end %>
+  </div>
+</div>

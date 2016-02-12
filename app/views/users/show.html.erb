@@ -17,18 +17,32 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @calendar_entries.any? %>
-      <h3>Concerts you are going to (<%= @going.count %>)</h3>
-      <ol class="calendar-entries">
-        <%= render @going  %>
-      </ol>
-      <br>
-      <h3>Concerts you might attend (<%= @might_go.count %>)</h3>
-      <ol class="calendar-entries">
-        <%= render @might_go  %>
-      </ol>
+    <% if @user.sk_username.nil? %>
+      You have to provide a songkick username to see your upcoming concerts.
+      You can do this in the settings tab.
     <% else %>
-      <h3>You aren't tracking any upcoming events.</h3>
+      <% if @calendar_entries.any? %>
+        <h3>Concerts you are going to (<%= @going.count %>)</h3>
+        <% if @going.any? %>
+          <ol class="calendar-entries">
+            <%= render @going %>
+          </ol>
+        <% else %>
+          <hr>
+          You aren't going to any events.
+        <% end %>
+        <br><br><br>
+        <% if @might_go.any? %>
+          <h3>Concerts you might attend (<%= @might_go.count %>)</h3>
+          <ol class="calendar-entries">
+            <%= render @might_go  %>
+          </ol>
+        <% else %>
+          You aren't tracking any events.
+        <% end %>
+      <% else %>
+        <h3>You aren't attending or tracking any upcoming events.</h3>
+      <% end %>
     <% end %>
   </div>
 </div>

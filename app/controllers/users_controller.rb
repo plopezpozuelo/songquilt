@@ -12,8 +12,8 @@ class UsersController < ApplicationController
     if @user.sk_username
       @user.save_calendar_entries_from_api
       @calendar_entries = @user.calendar_entries
-      @going = @calendar_entries.select{ |item| item[:reason] == 'im_going' }
-      @might_go = @calendar_entries.select{ |item| item[:reason] == 'i_might_go' }
+      @going = @calendar_entries.where(reason: 'im_going')
+      @might_go = @calendar_entries.where(reason: 'i_might_go')
     end
   end
 

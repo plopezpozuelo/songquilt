@@ -1,4 +1,19 @@
 <li id="calendar_entry-<%= calendar_entry.id %>">
   <img src=<%= avatar_url_for((Event.find_by sk_id: calendar_entry.event_id).artist_id) %> >
-  <span class="display-name"><%= (Event.find_by sk_id: calendar_entry.event_id).display_name %></span>
+  <span class="display-name"><%= link_to (Event.find_by sk_id: calendar_entry.event_id).display_name, "../events/#{calendar_entry.event_id}" %></span>
+
+  <% going_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "im_going").count %>
+  <% might_go_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "i_might_go").count %>
+
+  <% if going_count == 1 %>
+    <span class="attendance-count"><%= going_count %> person is going to this event</span>
+  <% elsif going_count > 1 %>
+    <span class="attendance-count"><%= going_count %> people are going to this event</span>
+  <% end %>
+
+  <% if might_go_count == 1 %>
+    <span class="attendance-count"><%= might_go_count %> person might be going to this event</span>
+  <% elsif might_go_count > 1 %>
+    <span class="attendance-count"><%= might_go_count %> people might be going to this event</span>
+  <% end %>
 </li>

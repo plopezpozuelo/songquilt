@@ -201,8 +201,16 @@ aside {
     border-top: 1px solid #e8e8e8;
   }
   .display-name {
-    margin-top: 1em;
+    font-size: 1.2em;
     padding-left: 1em;
+  }
+  .display-name:hover {
+    color: $sk-pink;
+    padding-left: 1em;
+  }
+  .attendance-count {
+    display: block;
+    margin-left: 60px;
   }
   .img {
     float: left;

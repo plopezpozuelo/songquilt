@@ -17,7 +17,25 @@ User.create!(first_name:            "Maria",
              activated: true,
              activated_at: Time.zone.now)
 
-98.times do |n|
+User.create!(first_name:            "Sarah",
+             last_name:             "Dear",
+             email:                 "test1@songkick.com",
+             sk_username:           "sarahdear",
+             password:              "password",
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
+
+User.create!(first_name:            "Lucy",
+             last_name:             "Dodridge",
+             email:                 "test2@songkick.com",
+             sk_username:           "lucy-dodridge",
+             password:              "password",
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
+
+96.times do |n|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   email = "example.#{n+1}@songkick.com"

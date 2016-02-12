@@ -1,7 +1,8 @@
 class Event < ActiveRecord::Base
   validates :sk_id, :uniqueness => true
 
-  #has_many :calendar_entries, dependent: :destroy
+  has_many :calendar_entries, dependent: :destroy
+  has_many :users, through: :calendar_entries
 
   def self.parse_event_hash(event_hash)
     params = Hash.new
