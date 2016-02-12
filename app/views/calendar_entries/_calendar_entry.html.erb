@@ -2,8 +2,8 @@
   <img src=<%= avatar_url_for((Event.find_by sk_id: calendar_entry.event_id).artist_id) %> >
   <span class="display-name"><%= link_to (Event.find_by sk_id: calendar_entry.event_id).display_name, "../events/#{calendar_entry.event_id}" %></span>
 
-  <% going_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "im_going").count %>
-  <% might_go_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "i_might_go").count %>
+  <% going_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "im_going").where.not(user_id: params[:id]).count %>
+  <% might_go_count = CalendarEntry.where(event_id: calendar_entry.event_id, reason: "i_might_go").where.not(user_id: params[:id]).count %>
 
   <% if going_count == 1 %>
     <span class="attendance-count"><%= going_count %> person is going to this event</span>
