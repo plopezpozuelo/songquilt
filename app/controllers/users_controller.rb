@@ -9,11 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user.sk_username
-      @user.save_calendar_entries_from_api
+    if @user.save_calendar_entries_from_api
       @calendar_entries = @user.calendar_entries
       @going = @calendar_entries.where(reason: 'im_going')
       @might_go = @calendar_entries.where(reason: 'i_might_go')
+    else
+      @calendar_entries = false
     end
   end
 

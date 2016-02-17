@@ -6,20 +6,25 @@
         <%= gravatar_for @user %>
         <%= @user.first_name %> <%= @user.last_name %>
       </h1>
-
       <h2>
         <%= @user.email %>
       </h2>
-
-      <a href="http://www.songkick.com/users/<%= @user.sk_username %>">
-        <%= @user.sk_username %>
-      </a>
+      <%= link_to @user.sk_username, "http://www.songkick.com/users/#{@user.sk_username}", {:class => "sk-link"} %>
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.sk_username.nil? %>
-      You have to provide a songkick username to see your upcoming concerts.
-      You can do this in the settings tab.
+    <% unless @calendar_entries %>
+      <% if current_user?(@user) %>
+        <div class="invalid-sk-username"> Invalid Songkick username </div>
+        <hr>
+        You have to provide a valid songkick username to see your upcoming concerts.
+        <br>
+        You can do this in the <%= link_to "settings tab", edit_user_path(current_user), {:class => "sk-link"} %>.
+      <% else %>
+        <div class="invalid-sk-username"> No events to display </div>
+        <hr>
+        This user has not provided a valid Songkick username.
+      <% end %>
     <% else %>
       <% if @calendar_entries.any? %>
         <h3>Concerts you are going to (<%= @going.count %>)</h3>
