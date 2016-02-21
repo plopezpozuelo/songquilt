@@ -82,12 +82,22 @@ class User < ActiveRecord::Base
   def save_calendar_entries_from_api
     uri = "http://api.songkick.com/api/3.0/users/#{sk_username}/calendar.json?reason=attendance&apikey=hackday"
     response = HTTParty.get(uri)
-    if (response['resultsPage']['status'] == "error")
+    results_page = response['resultsPage']
+    if (results_page['status'] == "error")
       return false
     elsif
+      total_pages = (results_page['totalEntries']/results_page['perPage'].to_f).ceil
+      page_no = 1
       CalendarEntry.where(user_id: self.id).destroy_all
-      response['resultsPage']['results']['calendarEntry'].each do |entry|
-        CalendarEntry.find_or_create_by(CalendarEntry.parse_calendar_entry(entry, self.id))
+      loop do
+        results_page['results']['calendarEntry'].each do |entry|
+          CalendarEntry.find_or_create_by(CalendarEntry.parse_calendar_entry(entry, self.id))
+        end
+        break if page_no == total_pages
+        page_no += 1
+        uri = "http://api.songkick.com/api/3.0/users/#{sk_username}/calendar.json?reason=attendance&page=#{page_no}&apikey=hackday"
+        response = HTTParty.get(uri)
+        results_page = response['resultsPage']
       end
     end
   end

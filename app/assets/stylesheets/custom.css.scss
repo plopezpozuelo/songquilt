@@ -1,4 +1,4 @@
-@import "bootstrap-sprockets";
+ @import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* mixins, variables, etc. */
@@ -230,13 +230,12 @@ aside {
     color: $black;
     font-size: 1.4em;
     padding-left: 1em;
-    display: inline-block;
+    vertical-align: top;
   }
   .display-name:hover {
     color: $sk-pink;
   }
   .attendance-count {
-    margin-left: 60px;
   }
   .img {
     float: left;
