@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
   # Saves calendar entries
   def save_calendar_entries_from_api
     uri = "http://api.songkick.com/api/3.0/users/#{sk_username}/calendar.json?reason=attendance&apikey=hackday"
+    p uri
     response = HTTParty.get(uri)
     results_page = response['resultsPage']
     if (results_page['status'] == "error")

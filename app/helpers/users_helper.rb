@@ -8,6 +8,6 @@ module UsersHelper
   end
 
   # def avatar_url_for(user)
-  #   "https://images.sk-static.com/images/media/profile_images/users/#{user.id}/col2"
+  #   "https://images.sk-static.com/images/media/profile_images/users/#{user.sk_id}/col2"
   # end
 end
